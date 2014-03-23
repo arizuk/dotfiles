@@ -1,0 +1,221 @@
+[
+    { "keys": ["ctrl+j"], "command": "auto_complete" },
+
+    // タブでのウインドウ移動を隣接するウインドウにする
+    {  "keys": ["ctrl+tab"], "command": "next_view" },
+    {  "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+    { "keys": ["ctrl+-"], "command": "reindent" },
+
+    // { "keys": ["ctrl+shift+y"], "command": "clipboard_display" },
+
+    { "keys": ["ctrl+shift+t"], "command": "delete_trailing_spaces" },
+
+    { "keys": ["ctrl+shift+b"], "command": "move", "args": {"by": "subwords", "forward": false} },
+    { "keys": ["ctrl+shift+f"], "command": "move", "args": {"by": "subword_ends", "forward": true} },
+
+    { "keys": ["ctrl+="], "command": "reindent"},
+
+    // # Copy escape to ctrl + [
+    { "keys": ["ctrl+["], "command": "single_selection", "context":
+        [
+            { "key": "num_selections", "operator": "not_equal", "operand": 1 }
+        ] },
+    { "keys": ["ctrl+["], "command": "clear_fields", "context":
+        [
+            { "key": "has_next_field", "operator": "equal", "operand": true }
+        ]
+    },
+    { "keys": ["ctrl+["], "command": "clear_fields", "context":
+        [
+            { "key": "has_prev_field", "operator": "equal", "operand": true }
+        ]
+    },
+    { "keys": ["ctrl+["], "command": "hide_panel", "args": {"cancel": true},
+        "context":
+        [
+            { "key": "panel_visible", "operator": "equal", "operand": true }
+        ]
+    },
+    { "keys": ["ctrl+["], "command": "hide_overlay", "context":
+        [
+            { "key": "overlay_visible", "operator": "equal", "operand": true }
+        ]
+    },
+    { "keys": ["ctrl+["], "command": "hide_auto_complete", "context":
+        [
+            { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+        ]
+    },
+
+    //
+    {
+        "keys": ["ctrl+super+shift+r"], "command": "refresh_folder_list"
+    },
+
+    // http://qiita.com/shibainurou@github/items/dc18f2dfc91e36adb208
+    // htmlなら [% %]
+    { "keys": ["super+."], "command": "insert_snippet", "args": {"contents": "[% ${0:data} %]"}, "context":
+        [
+            { "key":"selection_empty", "operator": "equal", "operand": true, "match_all":true },
+            { "key":"selector", "operator": "equal", "operand": "text.html", "match_all":true }
+        ]
+    },
+    { "keys": ["super+."], "command": "insert_snippet", "args": {"contents": "[% ${0:$SELECTION} %]"}, "context":
+        [
+            { "key":"selection_empty", "operator": "equal", "operand": false, "match_all":true },
+            { "key":"selector", "operator": "equal", "operand": "text.html", "match_all":true }
+        ]
+    },
+
+    //
+    { "keys": ["super+k", "super+r"], "command": "reveal_in_side_bar" },
+    { "keys": ["super+k", "super+c"], "command": "copy_path" },
+    { "keys": ["super+k", "super+o"], "command": "open_dir", "args": {"dir": "$file_path", "file": "$file_name"} },
+
+
+    { "keys": ["ctrl+0"], "command": "focus_side_bar" },
+
+    // -------------------- Origami
+    { "keys": ["super+k", "up"], "command": "travel_to_pane", "args": {"direction": "up"} },
+    { "keys": ["super+k", "right"], "command": "travel_to_pane", "args": {"direction": "right"} },
+    { "keys": ["super+k", "down"], "command": "travel_to_pane", "args": {"direction": "down"} },
+    { "keys": ["super+k", "left"], "command": "travel_to_pane", "args": {"direction": "left"} },
+
+    { "keys": ["super+k", "shift+up"], "command": "carry_file_to_pane", "args": {"direction": "up"} },
+    { "keys": ["super+k", "shift+right"], "command": "carry_file_to_pane", "args": {"direction": "right"} },
+    { "keys": ["super+k", "shift+down"], "command": "carry_file_to_pane", "args": {"direction": "down"} },
+    { "keys": ["super+k", "shift+left"], "command": "carry_file_to_pane", "args": {"direction": "left"} },
+
+    { "keys": ["super+k", "alt+up"], "command": "clone_file_to_pane", "args": {"direction": "up"} },
+    { "keys": ["super+k", "alt+right"], "command": "clone_file_to_pane", "args": {"direction": "right"} },
+    { "keys": ["super+k", "alt+down"], "command": "clone_file_to_pane", "args": {"direction": "down"} },
+    { "keys": ["super+k", "alt+left"], "command": "clone_file_to_pane", "args": {"direction": "left"} },
+
+    { "keys": ["super+k", "super+up"], "command": "create_pane_with_file", "args": {"direction": "up"} },
+    { "keys": ["super+k", "super+right"], "command": "create_pane_with_file", "args": {"direction": "right"} },
+    { "keys": ["super+k", "super+down"], "command": "create_pane_with_file", "args": {"direction": "down"} },
+    { "keys": ["super+k", "super+left"], "command": "create_pane_with_file", "args": {"direction": "left"} },
+
+    { "keys": ["super+k", "super+shift+up"], "command": "destroy_pane", "args": {"direction": "up"} },
+    { "keys": ["super+k", "super+shift+right"], "command": "destroy_pane", "args": {"direction": "right"} },
+    { "keys": ["super+k", "super+shift+down"], "command": "destroy_pane", "args": {"direction": "down"} },
+    { "keys": ["super+k", "super+shift+left"], "command": "destroy_pane", "args": {"direction": "left"} },
+
+    // You can also destroy the current pane by binding the following command:
+    { "keys": ["super+k", "super+k"], "command": "destroy_pane", "args": {"direction": "self"} },
+
+    { "keys": ["super+k", "super+alt+up"], "command": "create_pane_with_file", "args": {"direction": "up"} },
+    { "keys": ["super+k", "super+alt+right"], "command": "create_pane_with_file", "args": {"direction": "right"} },
+    { "keys": ["super+k", "super+alt+down"], "command": "create_pane_with_file", "args": {"direction": "down"} },
+    { "keys": ["super+k", "super+alt+left"], "command": "create_pane_with_file", "args": {"direction": "left"} },
+
+    { "keys": ["super+k", "super+z"], "command": "zoom_pane", "args": {"fraction": 0.9} },
+    { "keys": ["super+k", "super+shift+z"], "command": "unzoom_pane", "args": {} },
+    // -------------------- Origami
+
+
+    // Emmet
+    // http://qiita.com/quattro_4/items/f04d0bdd341c7798bba2
+    {
+        "keys": ["ctrl+;"],
+        "args": {"action": "expand_abbreviation"},
+        "command": "run_emmet_action",
+        "context": [
+            {
+                "operand": "source.css - source.css.less, text.xml, text.html - source",
+                "operator": "equal",
+                "match_all": true,
+                "key": "selector"
+            }
+        ]
+        // "context": [{"key": "emmet_action_enabled.expand_abbreviation"} ]
+    },
+
+    // browser refresh
+    {
+        "keys": ["command+shift+r"], "command": "browser_refresh", "args": {
+            "auto_save": true,
+            "delay": 0.5,
+            "activate_browser": true,
+            "browser_name" : "Google Chrome"
+          }
+    },
+
+
+     // layout を少し emacs っぽく. TODO:縦横分割を動的に.
+    {
+        "keys": ["super+k", "1"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 1.0],
+            "rows": [0.0, 1.0],
+            "cells": [[0, 0, 1, 1]]
+        }
+    },
+    {
+        "keys": ["super+k", "2"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 0.5, 1.0],
+            "rows": [0.0, 1.0],
+            "cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+        }
+    },
+    {
+        "keys": ["super+k", "3"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 0.33, 0.66, 1.0],
+            "rows": [0.0, 1.0],
+            "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+        }
+    },
+    {
+        "keys": ["super+k", "4"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 0.25, 0.5, 0.75, 1.0],
+            "rows": [0.0, 1.0],
+            "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+        }
+    },
+    {
+        "keys": ["super+k", "shift+2"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 1.0],
+            "rows": [0.0, 0.5, 1.0],
+            "cells": [[0, 0, 1, 1], [0, 1, 1, 2]]
+        }
+    },
+    {
+        "keys": ["super+k", "shift+3"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 1.0],
+            "rows": [0.0, 0.33, 0.66, 1.0],
+            "cells": [[0, 0, 1, 1], [0, 1, 1, 2], [0, 2, 1, 3]]
+        }
+    },
+    {
+        "keys": ["super+k", "5"],
+        "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 0.5, 1.0],
+            "rows": [0.0, 0.5, 1.0],
+            "cells":
+            [
+                [0, 0, 1, 1], [1, 0, 2, 1],
+                [0, 1, 1, 2], [1, 1, 2, 2]
+            ]
+        }
+    }
+]

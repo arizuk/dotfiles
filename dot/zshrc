@@ -98,8 +98,11 @@ alias uuu='cd ../../..'
 alias tmux="tmux -2 -u"
 
 alias -g L="|less"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 source ~/.zshrc.local;
+export _Z_DATA=~/.z.data/z
+source ~/.z.sh/z.sh
 
 function chpwd() { ls;}
 
