@@ -1,0 +1,30 @@
+[user]
+	name = masaki.arizuka
+	email = masaki.arizuka@gmail.com
+[merge]
+	tool = vimdiff
+[color]
+	ui = auto
+[alias]
+	st = status
+	ci = commit
+	di = diff
+	vd = difftool
+	co = checkout
+	br = branch
+	up = pull
+	ls = ls-files
+	lg = log --graph --oneline --all
+	w = whatchanged
+	up = pull
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[push]
+	default = upstream
+[tig "bind"]
+	generic = g move-first-line
+	generic = G move-last-line
