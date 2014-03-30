@@ -2,6 +2,7 @@
 	"installed_packages":
 	[
 		"Alignment",
+		"BracketHighlighter",
 		"Browser Refresh",
 		"Emmet",
 		"Theme - Spacegray",
