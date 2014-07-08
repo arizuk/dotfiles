@@ -31,6 +31,8 @@ install ngrep
 install htop-osx
 install the_silver_searcher
 install hub
+install rbenv
+install ruby-build
 # install packer
 # install gist
 # install rmtrash
