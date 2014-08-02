@@ -1,5 +1,6 @@
 {
 	"color_scheme": "Packages/Theme - Spacegray/base16-ocean.dark.tmTheme",
+	// "font_face": "Ricty",
 	"font_face": "Monaco",
 	"font_size": 11,
 	"highlight_line": true,

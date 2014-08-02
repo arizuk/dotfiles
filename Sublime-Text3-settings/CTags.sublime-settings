@@ -1,0 +1,4 @@
+{
+    // installed by homebrew
+    "command": "/usr/local/bin/ctags"
+}
