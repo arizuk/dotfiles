@@ -43,6 +43,7 @@ install ruby-build
 # install automake
 #install imagemagick
 reattach-to-user-namespace
+install gauche
 
 # .dmg
 # cask install google-chrome
