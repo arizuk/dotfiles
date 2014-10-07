@@ -96,6 +96,7 @@ alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias tmux="tmux -2 -u"
+alias h="history"
 
 alias -g L="|less"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
