@@ -130,7 +130,11 @@ function _git_status() {
 zle -N git_status _git_status
 bindkey '^G^S' git_status
 
-
-
-
-
+function peco-select-history() {
+    BUFFER=$(\history -n 1| \
+        tail -r| \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+}
+zle -N peco-select-history
+bindkey '^G^R' peco-select-history
