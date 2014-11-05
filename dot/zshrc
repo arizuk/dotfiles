@@ -90,7 +90,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 #-- alias
-alias ls='ls -G --color=auto'
+alias ls='ls -G'
 alias ll='ls -l'
 alias u='cd ..'
 alias uu='cd ../..'
