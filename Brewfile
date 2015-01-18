@@ -33,6 +33,7 @@ install the_silver_searcher
 install hub
 install rbenv
 install ruby-build
+install mysql
 # install packer
 # install gist
 # install rmtrash
@@ -42,8 +43,9 @@ install ruby-build
 # install autoconf
 # install automake
 #install imagemagick
-reattach-to-user-namespace
+install reattach-to-user-namespace
 install gauche
+install pstree
 
 # .dmg
 # cask install google-chrome
