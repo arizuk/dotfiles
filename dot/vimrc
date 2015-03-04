@@ -26,9 +26,10 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'scrooloose/nerdtree'
 
 call neobundle#end()
 
@@ -89,6 +90,11 @@ nmap <C-o> :Unite outline<CR>
 nmap <C-x> :VimFiler<CR>
 let g:vimfiler_as_default_explorer = 1
 "autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
+"
+"==============================================================================
+"" NERDTree
+"==============================================================================
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 "==============================================================================
 "" light-line
@@ -243,9 +249,16 @@ augroup vimrc_restore_cursor_position
 "nnoremap <silent> <leader>to :<c-u>tabonly<cr>
 "nnoremap <silent> <leader>ts :<c-u>tabs<cr>
 
+
+set tabstop=4
+set autoindent
+set expandtab
+set shiftwidth=4
+
 " augroupを指定することで一括解除ができる
 augroup vimrc
 autocmd! FileType perl setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+autocmd! FileType php  setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd! FileType sh   setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd! FileType css  setlocal shiftwidth=4 tabstop=2 softtabstop=2

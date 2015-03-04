@@ -19,6 +19,7 @@
 	up = pull
 [core]
 	editor = vim -c \"set fenc=utf-8\"
+	excludesfile = ~/.gitignore
 [diff]
 	tool = vimdiff
 [difftool]
