@@ -31,6 +31,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'kien/ctrlp.vim'
 
 call neobundle#end()
 
@@ -157,7 +158,7 @@ let g:vimfiler_as_default_explorer = 1
 "" NERDTree
 "==============================================================================
 
-" nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 "==============================================================================
 "" Neocomplcache 
@@ -225,6 +226,58 @@ set background=light
 highlight SpecialKey cterm=underline ctermfg=gray
 highlight LineNr ctermfg=blue
 highlight NonText ctermfg=darkgrey
+
+"==============================================================================
+"" Ctrlp
+"==============================================================================
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_max_height          = &lines " 目一杯に一覧
+let g:ctrlp_max_height          = 10 " 10行
+let g:ctrlp_jump_to_buffer      = 2 " タブで開かれていた場合はそのタブに切り替える
+let g:ctrlp_clear_cache_on_exit = 1 " 終了時キャッシュをクリアする
+let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
+"let g:ctrlp_highlight_match     = [1, 'IncSearch'] "絞り込みで一致した部分のハイライト
+let g:ctrlp_open_new_file       = 1 " 新規ファイル作成時にタブで開く
+let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタブで最大10まで開く
+let g:ctrlp_match_window_reversed = 0 " Change the listing order of the files in the match window.
+let g:ctrlp_mruf_default_order = 0 " Set this to 1 to disable sorting when searching in MRU mode:
+let g:ctrlp_map = '<c-a>' " Start CtrlP by Ctrl-k :p
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtBS()':              ['<c-h>', '<bs>', '<c-]>'],
+  \ 'PrtDelete()':          ['<del>'],
+  \ 'PrtDeleteWord()':      ['<c-w>'],
+  \ 'PrtClear()':           ['<c-u>'],
+  \ 'PrtSelectMove("j")':   ['<c-n>', '<c-j>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>', '<c-k>', '<up>'],
+  \ 'PrtHistory(-1)':       [],
+  \ 'PrtHistory(1)':        [],
+  \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+  \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
+  \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+  \ 'ToggleFocus()':        ['<s-tab>'],
+  \ 'ToggleRegex()':        ['<c-r>'],
+  \ 'ToggleByFname()':      ['<c-d>'],
+  \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
+  \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
+  \ 'PrtExpandDir()':       ['<tab>'],
+  \ 'PrtInsert("w")':       ['<F2>', '<insert>'],
+  \ 'PrtInsert("s")':       ['<F3>'],
+  \ 'PrtInsert("v")':       ['<F4>'],
+  \ 'PrtInsert("+")':       ['<F6>'],
+  \ 'PrtCurStart()':        ['<c-a>'],
+  \ 'PrtCurEnd()':          ['<c-e>'],
+  \ 'PrtCurLeft()':         ['<left>', '<c-^>'],
+  \ 'PrtCurRight()':        ['<c-l>', '<right>'],
+  \ 'PrtClearCache()':      ['<F5>'],
+  \ 'PrtDeleteMRU()':       ['<F7>'],
+  \ 'CreateNewFile()':      ['<c-y>'],
+  \ 'MarkToOpen()':         ['<c-z>'],
+  \ 'OpenMulti()':          ['<c-o>'],
+  \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
+  \ }
 
 "==============================================================================
 " Keyboard shortcuts
