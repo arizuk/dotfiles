@@ -1,13 +1,20 @@
 {
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Alignment",
 		"Better CoffeeScript",
 		"BracketHighlighter",
 		"Browser Refresh",
+		"ColorSchemeSelector",
 		"CTags",
 		"Emmet",
+		"Package Control",
+		"Phpcs",
 		"Theme - Spacegray",
+		"Themr",
 		"TrailingSpaces"
 	]
 }
