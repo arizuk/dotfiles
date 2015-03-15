@@ -130,11 +130,17 @@ function _git_status() {
 zle -N git_status _git_status
 bindkey '^G^S' git_status
 
-function peco-select-history() {
-    BUFFER=$(\history -n 1| \
-        tail -r| \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
+etopt hist_ignore_all_dups
+function percol_select_history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER             # move cursor
+    zle -R -c                   # refresh
 }
-zle -N peco-select-history
-bindkey '^G^R' peco-select-history
+zle -N percol_select_history
+bindkey '^R' percol_select_history

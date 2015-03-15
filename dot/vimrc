@@ -9,7 +9,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 filetype plugin indent on     " Required!
 
@@ -26,9 +26,13 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/neocomplcache'
+
+call neobundle#end()
 
 filetype plugin on
 
@@ -87,6 +91,56 @@ nmap <C-o> :Unite outline<CR>
 nmap <C-x> :VimFiler<CR>
 let g:vimfiler_as_default_explorer = 1
 "autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
+"
+"==============================================================================
+"" NERDTree
+"==============================================================================
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" _(アンダーバー)区切りの補完を有効化
+let g:neocomplcache_enable_underbar_completion = 1
+
+" 補完候補の一番先頭を選択状態にする(AutoComplPopと似た動作)
+let g:neocomplcache_enable_auto_select = 1
+
+"ポップアップメニューで表示される候補の数。初期値は100
+let g:neocomplcache_max_list = 20
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" 補完候補が出ていたら確定、なければ改行
+inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 
 "==============================================================================
 "" light-line
@@ -241,9 +295,16 @@ augroup vimrc_restore_cursor_position
 "nnoremap <silent> <leader>to :<c-u>tabonly<cr>
 "nnoremap <silent> <leader>ts :<c-u>tabs<cr>
 
+
+set tabstop=4
+set autoindent
+set expandtab
+set shiftwidth=4
+
 " augroupを指定することで一括解除ができる
 augroup vimrc
 autocmd! FileType perl setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+autocmd! FileType php  setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd! FileType sh   setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd! FileType css  setlocal shiftwidth=4 tabstop=2 softtabstop=2
