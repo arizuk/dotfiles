@@ -30,8 +30,12 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'scrooloose/nerdtree'
+
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle "tyru/caw.vim"
+NeoBundle "PDV--phpDocumentor-for-Vim"
 
 call neobundle#end()
 
@@ -44,15 +48,15 @@ set autoindent
 set smartindent
 set showmatch
 set autoread
+set incsearch
+set foldmethod=marker
+set ignorecase
+
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc> "
 
-set incsearch
 " tag
 set tags=/home/m.arizuka/htdocs/.tags
-set foldmethod=marker
-
-
 "==============================================================================
 "" Encoding
 "==============================================================================
@@ -144,7 +148,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "==============================================================================
 "" Unite-outline.vim
 "==============================================================================
-nmap <C-o> :Unite outline<CR>
+nmap <C-l><C-o> :Unite outline<CR>
 
 "==============================================================================
 "" VimFIler
@@ -159,6 +163,23 @@ let g:vimfiler_as_default_explorer = 1
 "==============================================================================
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+noremap <C-k><C-r> :NERDTreeFind<CR>
+
+"==============================================================================
+"" Caw
+"==============================================================================
+
+"\cでcomment toggle
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
+"==============================================================================
+"" Phpdoc
+"==============================================================================
+
+inoremap <C-k><C-c> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-k><C-c> :call PhpDocSingle()<CR>
+vnoremap <C-k><C-c> :call PhpDocRange()<CR>
 
 "==============================================================================
 "" Neocomplcache 
@@ -208,6 +229,13 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " 補完候補が出ていたら確定、なければ改行
 inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
+
+"==============================================================================
+"" Unite history yank
+"==============================================================================
+
+let g:unite_source_history_yank_enable =1  "history/yankの有効化
+noremap <C-k><C-y> :<C-u>Unite history/yank<CR>
 
 "==============================================================================
 "" Light-line
@@ -289,6 +317,10 @@ map <C-P> :bprevious<CR>
 
 " reload config file
 nmap ,R :source ~/.vimrc<CR>
+
+" 対応する括弧に移動
+nnoremap ( %
+nnoremap ) %
 
 " compile check pig
 " nnoremap <C-c> :! /usr/bin/pig-0.11.0 -c %<Enter>
