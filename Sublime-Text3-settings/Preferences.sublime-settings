@@ -1,13 +1,21 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Twilight.tmTheme",
+	"auto_find_in_selection": true,
+	"color_scheme": "Packages/Theme - Spaceblack/Color Schemes/Spaceblack-alt.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
 	"font_face": "Monaco",
 	"font_size": 11,
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Origami",
+		"OrigamiEmacs",
+		"RecentActiveFiles",
+		"Sublime Bookmarks",
+		"Vintage",
+		"VintageousOrigami"
 	],
 	"tab_size": 4,
-	"theme": "Default.sublime-theme",
-	"translate_tabs_to_spaces": true
+	"theme": "Spaceblack.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"word_wrap": true
 }

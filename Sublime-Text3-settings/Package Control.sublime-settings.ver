@@ -1,20 +1,52 @@
 {
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
 	"installed_packages":
 	[
 		"Alignment",
+		"All Autocomplete",
+		"Babel",
 		"Better CoffeeScript",
 		"BracketHighlighter",
 		"Browser Refresh",
 		"ColorSchemeSelector",
+		"Chain of Command",
 		"CTags",
+		"dired",
+		"DocBlockr",
+		"EasyMotion",
 		"Emmet",
 		"Package Control",
 		"Phpcs",
 		"Theme - Spacegray",
 		"Themr",
 		"TrailingSpaces"
+		"ExtendedTabSwitcher",
+		"File History",
+		"Filter Lines",
+		"GitLink",
+		"OmniMarkupPreviewer",
+		"Origami",
+		"OrigamiEmacs",
+		"Package Control",
+		"PHP-Twig",
+		"Phpcs",
+		"PhpNamespace",
+		"Pretty YAML",
+		"Pug",
+		"RecentActiveFiles",
+		"Ruby Slim",
+		"Sass",
+		"Sublime Bookmarks",
+		"Swift",
+		"Table Editor",
+		"Theme - Spaceblack",
+		"Theme - Spacegray",
+		"TrailingSpaces",
+		"TypeScript",
+		"VintageousOrigami",
+		"yardoc"
 	]
 }

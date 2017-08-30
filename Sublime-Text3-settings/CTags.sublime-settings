@@ -1,5 +1,5 @@
 {
     // installed by homebrew
-    "command": "/usr/local/bin/ctags",
+    "command": "/usr/local/bin/ctags -R -f .tags",
     "autocomplete": true
 }
