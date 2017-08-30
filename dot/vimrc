@@ -106,6 +106,14 @@ let g:buftabs_active_highlight_group="Visual"
 " coomand line mode
 set wildmode=longest:full,full
 
+set tags=tags
+
+" vimdiffの色設定
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
+
 "==============================================================================
 "" Unite.vim
 "==============================================================================
@@ -249,7 +257,7 @@ syntax on
 
 " coloring
 set background=light
-:colorscheme darkblue
+:colorscheme nord
 
 highlight SpecialKey cterm=underline ctermfg=gray
 highlight LineNr ctermfg=blue

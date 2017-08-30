@@ -19,9 +19,10 @@
 	up = pull
 [core]
 	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 [diff]
 	tool = vimdiff
+	compactionHeuristic = true
 [difftool]
 	prompt = false
 [push]
@@ -29,3 +30,17 @@
 [tig "bind"]
 	generic = g move-first-line
 	generic = G move-last-line
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[pull]
+	rebase = true

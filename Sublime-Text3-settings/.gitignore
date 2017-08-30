@@ -1,3 +1,5 @@
 Package Control.*
 !Package Control.sublime-settings.ver
 build
+FileHistory*.json
+oscrypto-ca-bundle.crt

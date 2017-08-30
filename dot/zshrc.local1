@@ -1,0 +1,132 @@
+alias usubl="/usr/local/bin/reattach-to-user-namespace /Users/m.arizuka/work/node/subl/subl";
+alias gbrd='git branch --merged|grep -v '\''*'\''|xargs git branch -d'
+alias -g S='|xargs /usr/local/bin/reattach-to-user-namespace /Users/m.arizuka/work/node/subl/subl'
+alias be='bundle exec'
+alias s='subl'
+alias t='bin/rake test'
+alias rs='bin/rspec'
+alias rsfd='bin/rspec --format documentation'
+alias grp="git reset HEAD~"
+alias -g sed="gsed"
+alias -g P="|pbcopy"
+
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+# export NODE_PATH=`npm root -g`
+# export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+# わりと遅いのでべたで書いておく
+export PATH="/usr/local/opt/php56/bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+export PATH="$HOME/.rbenv/bin:$PATH:"
+eval "$(rbenv init -)"
+#export RUBYGEMS_GEMDEPS=-
+
+export PATH=./bin:./binstubs:$PATH
+export BUNDLER_EDITOR="/Users/m.arizuka/work/node/subl/subl"
+
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+export PATH="$HOME/.pyenv/shims:$PATH"
+
+
+if [ ! -z "$TMUX" ]; then
+  #alias subl="/usr/local/bin/reattach-to-user-namespace /Users/m.arizuka/work/node/subl/subl";
+fi
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/m.arizuka/Downloads/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/m.arizuka/Downloads/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/m.arizuka/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/m.arizuka/Downloads/google-cloud-sdk/completion.zsh.inc'
+fi
+
+export KUBECONFIG=~/.kube/config:~/.kube/hacobelldev-config
+source <(kubectl completion zsh)
+
+function precmd()
+{
+    dakokucheck
+}
+
+function zz()
+{
+    cd $(find . -type d -not -path '*/\.*'|peco --query "$LBUFFER")
+}
+
+function rgm()
+{
+  bin/rails g model $1 --skip-fixture
+}
+
+function rgc()
+{
+  bin/rails g controller $@ --no-assets --no-decorator --no-helper
+}
+
+function ags()
+{
+  if [ -z "$@" ]; then
+    subl $(ag -g ".*"|peco --query "$LBUFFER")
+  else
+    subl $(ag -g $@|peco --query "$LBUFFER")
+  fi
+}
+
+# peco
+function peco-z-search
+{
+  which peco z > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Please install peco and z"
+    return 1
+  fi
+  local res=$(z | sort -rn | cut -c 12- | peco)
+  if [ -n "$res" ]; then
+    BUFFER+="cd $res"
+    zle accept-line
+  else
+    return 1
+  fi
+}
+zle -N peco-z-search
+bindkey '^z' peco-z-search
+
+function peco-find-file()
+{
+    if git rev-parse 2> /dev/null; then
+        source_files=$(git ls-files)
+    else
+        source_files=$(find . -type f)
+    fi
+    selected_files=$(echo $source_files | peco --prompt "[find file]")
+
+    result=''
+    for file in $selected_files; do
+        result="${result}$(echo $file | tr '\n' ' ')"
+    done
+
+    BUFFER="${BUFFER}${result}"
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N peco-find-file
+bindkey '^q' peco-find-file
+
+function peco-git-diff-files()
+{
+    file=$(echo $(git diff --name-only) $(git diff --cached --name-only)|uniq|tr ' ' '\n'|peco --prompt "[select file]")
+    BUFFER="${BUFFER}${file}"
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N peco-git-diff-files
+bindkey '^g' peco-git-diff-files
