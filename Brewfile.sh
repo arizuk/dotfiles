@@ -6,7 +6,7 @@ brew update
 
 # Add Repository
 brew tap homebrew/versions || true
-brew tap phinze/homebrew-cask || true
+#brew tap phinze/homebrew-cask || true
 brew tap homebrew/binary || true
 # Packages
 
@@ -21,11 +21,11 @@ brew install wget
 brew install tree
 brew install pidof
 brew install cmake
-brew install mosh
-brew install proctools
+#brew install mosh
+#brew install proctools
 brew install markdown
 brew install coreutils
-brew install brew-cask
+#brew install brew-cask
 brew install ngrep
 brew install htop-osx
 brew install the_silver_searcher
@@ -42,7 +42,7 @@ brew install ruby-build
 # install automake
 #install imagemagick
 brew install reattach-to-user-namespace
-brew install gauche
+#brew install gauche
 
 # .dmg
 # cask install google-chrome

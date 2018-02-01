@@ -8,12 +8,12 @@ filetype off                   " Required!
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-
+"
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-filetype plugin indent on     " Required!
-
-" Installation check.
+"filetype plugin indent on     " Required!
+"
+"" Installation check.
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
         \ string(neobundle#get_not_installed_bundle_names())
@@ -22,20 +22,18 @@ if neobundle#exists_not_installed_bundles()
 endif
 
 " plugins..
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'scrooloose/nerdtree'
-
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'tpope/vim-surround'
-NeoBundle "tyru/caw.vim"
-NeoBundle "PDV--phpDocumentor-for-Vim"
+"NeoBundle 'Shougo/neobundle.vim'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/vimfiler.vim'
+"NeoBundle 'Shougo/vimshell.vim'
+"NeoBundle 'Shougo/unite-outline'
+"NeoBundle 'itchyny/lightline.vim'
+"NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'scrooloose/nerdtree'
+"
+"NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'kien/ctrlp.vim'
+"NeoBundle 'tpope/vim-surround'
 
 call neobundle#end()
 
@@ -257,7 +255,7 @@ syntax on
 
 " coloring
 set background=light
-:colorscheme nord
+":colorscheme nord
 
 highlight SpecialKey cterm=underline ctermfg=gray
 highlight LineNr ctermfg=blue
