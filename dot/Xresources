@@ -1,48 +1,117 @@
-!! ~/.Xresources
+!-------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
 
-!!
-!! rxvt-unicode (urxvt)
-!!
+Xft.dpi:                    96
+Xft.antialias:              false
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
 
-URxvt.geometry:             96x32
-URxvt.scrollBar_right:      true
-URxvt.scrollBar_floating:   true
-URxvt.scrollstyle:          plain
-URxvt.cursorBlink:          true
-URxvt.cursorUnderline:      true
-URxvt.pointerBlank:         true
-URxvt.visualBell:           true
-URxvt.saveLines:            3000
-URxvt.fading:               40
+!-------------------------------------------------------------------------------
+! URxvt settings
+! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
+! More info at:
+! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!-------------------------------------------------------------------------------
 
-!! Font list and Spacing
-URxvt.font:                 xft:Dejavu Sans Mono-9,\
-                            xft:IPAGothic
-URxvt.letterSpace:          -1
-!URxvt.lineSpace:            0
+URxvt.perl-lib: $HOME/.urxvt
 
-!! Color Scheme and Opacity - gruvbox-dark https://github.com/morhetz/gruvbox
+! Clipboard
+URxvt.perl-ext-common: ...,clipboard
+URxvt.keysym.C-Shift-c: perl:clipboard:copy
+URxvt.keysym.C-Shift-v: perl:clipboard:paste
+!URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
 URxvt.depth:                32
-URxvt.color0:               [90]#282828
-URxvt.color1:               [90]#cc241d
-URxvt.color2:               [90]#98971a
-URxvt.color3:               [90]#d79921
-URxvt.color4:               [90]#458588
-URxvt.color5:               [90]#b16286
-URxvt.color6:               [90]#689d6a
-URxvt.color7:               [90]#a89984
-URxvt.color8:               [90]#928374
-URxvt.color9:               [90]#fb4934
-URxvt.color10:              [90]#b8bb26
-URxvt.color11:              [90]#fabd2f
-URxvt.color12:              [90]#83a598
-URxvt.color13:              [90]#d3869b
-URxvt.color14:              [90]#8ec07c
-URxvt.color15:              [90]#ebdbb2
-URxvt.foreground:           [90]#ebdbb2
-URxvt.background:           [90]#282828
-URxvt.colorIT:              [90]#8ec07c
-URxvt.colorBD:              [90]#d5c4a1
-URxvt.colorUL:              [90]#83a598
-URxvt.scrollColor:          [90]#504945
-!URxvt.troughColor:          [90]#3C3836
+URxvt.geometry:             90x30
+URxvt.transparent:          false
+URxvt.fading:               0
+! URxvt.urgentOnBell:         true
+! URxvt.visualBell:           true
+URxvt.loginShell:           true
+URxvt.saveLines:            50
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+
+! Fonts
+URxvt.allow_bold:           false
+/* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
+URxvt*font: xft:Monospace:pixelsize=14
+URxvt*boldFont: xft:Monospace:pixelsize=14
+
+! Fix font space
+URxvt*letterSpace: -1
+
+! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+
+! Perl extensions
+URxvt.perl-ext-common:      default,matcher
+URxvt.matcher.button:       1
+URxvt.urlLauncher:          firefox
+
+! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #657b83
+URxvt.cursorUnderline:      false
+
+! Pointer
+URxvt.pointerBlank:         true
+
+!!! Tango colors
+!! black
+!*color0:  #2E3436
+!*color8:  #555753
+!! red
+!*color1:  #a40000
+!*color9:  #EF2929
+!! green
+!*color2:  #4E9A06
+!*color10: #8AE234
+!! yellow
+!*color3:  #C4A000
+!*color11: #FCE94F
+!! blue
+!*color4:  #3465A4
+!*color12: #729FCF
+!! purple
+!*color5:  #75507B
+!*color13: #AD7FA8
+!! orange (replaces cyan)
+!*color6:  #ce5c00
+!*color14: #fcaf3e
+!! white
+!*color7:  #babdb9
+!*color15: #EEEEEC
+
+!!!
+*background: #0f0f0f
+*foreground: #c8c8c8
+
+!black
+*color0:  #251f1f
+*color8:  #5e5e5e
+!red
+*color1:  #eb4509
+*color9:  #eb4509
+!green
+*color2:  #94e76b
+*color10: #95e76b
+!yellow
+*color3:  #ffac18
+*color11: #ffac18
+!blue
+*color4:  #46aede
+*color12: #46aede
+!magenta
+*color5:  #e32c57
+*color13: #e32c57
+!cyan
+*color6:  #d6dbac
+*color14: #d6dbac
+!white
+*color7:  #efefef
+*color15: #efefef
+
