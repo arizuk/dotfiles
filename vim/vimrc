@@ -12,7 +12,6 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/vimshell.vim'
-
 Plug 'junegunn/vim-easy-align'
 
 call plug#end()
