@@ -1,21 +1,16 @@
 {
 	"auto_find_in_selection": true,
-	"color_scheme": "Packages/Theme - Spaceblack/Color Schemes/Spaceblack-alt.tmTheme",
+	"color_scheme": "Packages/ayu/ayu-mirage.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
-	"font_face": "Monaco",
+	"font_face": "Menlo",
 	"font_size": 11,
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"Origami",
-		"OrigamiEmacs",
-		"RecentActiveFiles",
-		"Sublime Bookmarks",
-		"Vintage",
-		"VintageousOrigami"
+		"Vintage"
 	],
 	"tab_size": 4,
-	"theme": "Spaceblack.sublime-theme",
+	"theme": "ayu-mirage.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"word_wrap": true
 }

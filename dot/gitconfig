@@ -11,12 +11,13 @@
 	di = diff
 	vd = difftool
 	co = checkout
-	br = branch
+	br = "!git --no-pager branch"
 	up = pull
 	ls = ls-files
 	lg = log --graph --oneline --all
 	w = whatchanged
 	up = pull
+	see = browse
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	excludesfile = ~/.gitignore_global
