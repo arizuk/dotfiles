@@ -18,7 +18,7 @@ clean: \
 	vim-clean
 
 git: FORCE
-	ln -s $(PWD)/dot/gitconfig ~/.gitconfig
+	ln -s $(PWD)/git/.gitconfig ~/.gitconfig
 git-clean: FORCE
 	rm ~/.gitconfig || true
 
@@ -26,7 +26,7 @@ zsh: FORCE
 	git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh;
 	git clone https://github.com/zsh-users/zsh-completions.git ~/.zsh-completions;
 	touch ~/.zshrc.local;
-	ln -s $(PWD)/dot/zshrc ~/.zshrc;
+	ln -s $(PWD)/zsh/.zshrc ~/.zshrc;
 zsh-clean: FORCE
 	rm -rf ~/.oh-my-zsh || true
 	rm -rf ~/.zsh-completions || true
@@ -41,7 +41,7 @@ z-clean: FORCE
 
 tmux: FORCE
 	touch ~/.tmux.conf.local;
-	ln -s $(PWD)/dot/tmux.conf ~/.tmux.conf;
+	ln -s $(PWD)/tmux/.tmux.conf ~/.tmux.conf;
 tmux-clean: FORCE
 	rm ~/.tmux.conf || true
 
