@@ -45,3 +45,5 @@
 	diff = diff-highlight | less
 [pull]
 	rebase = true
+[ghq]
+    	root = ~/ghq
