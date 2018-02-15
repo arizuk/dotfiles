@@ -1,1 +1,0 @@
-/home/arizuka/repos/dotfiles/vim/vimrc.d

@@ -47,10 +47,11 @@ tmux-clean: FORCE
 
 vim: FORCE
 	touch ~/.vimrc.local;
-	ln -s $(PWD)/vim/vimrc ~/.vimrc;
-	ln -s $(PWD)/vim/vimrc.d ~/.vimrc.d
+	ln -s $(PWD)/vim/.vimrc ~/.vimrc;
+	ln -s $(PWD)/vim/.vimrc.d ~/.vimrc.d
 vim-clean: FORCE
 	rm -rf ~/.vim || true
 	rm ~/.vimrc || true
+	rm ~/.vimrc.d || true
 
 .PHONY: FORCE
