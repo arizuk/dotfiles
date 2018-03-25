@@ -1,0 +1,8 @@
+SOURCE_IP=${SSH_CLIENT%% *}
+msg="user has logged in from $SSH_CLIENT at `date +"%Y/%m/%d %H:%M:%S"`"
+
+if [ ${SOURCE_IP} != "127.0.0.1" ]; then
+    curl -X POST --data-urlencode \
+        "payload={\"channel\": \"#security\", \"username\": \"ssh login alert\", \"text\": \"${msg}\", \"icon_emoji\": \":ghost:\"}" \
+        ${SLACK_WEBHOOK_URL}  >/dev/null 2>&1
+fi
