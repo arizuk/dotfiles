@@ -146,6 +146,3 @@ function percol_select_history() {
 }
 zle -N percol_select_history
 bindkey '^R' percol_select_history
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
