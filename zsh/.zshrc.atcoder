@@ -1,0 +1,61 @@
+#- atcoder
+function atc_init() {
+  if [ ! -e "./main.rs" ]; then
+    cp -i /home/arizuka/ghq/github.com/arizuk/atcoder/templates/main.rs .
+  fi
+
+  if [ $# -gt 0 ]; then
+    /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases $@
+  elif [ -e "p" ]; then
+    /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases p
+  else
+    /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases
+  fi
+}
+
+function atc_test() {
+  if [ "${1}" != 'rb' ]; then
+    rustc ./main.rs
+    if [ $? -gt 0 ]; then return 1; fi
+
+    cat main.rs|pbcopy
+    echo "Run main.rs"
+    runner="./main"
+  else
+    cat main.rb|pbcopy
+    echo "Run ruby main.rb"
+    runner="ruby main.rb"
+  fi
+
+  for i in `ls input*`; do
+    output=$(cat ${i}|eval $runner)
+    expected=$(cat ${i/input/output})
+
+    if [ "$output" != "$expected" ]; then
+      ret="... Failed"
+    else
+      ret="... ok"
+    fi
+
+    echo ---------- ${i} ${ret}
+    echo $output
+
+    if [ "$output" != "$expected" ]; then
+      echo ---------- Expected
+      echo $expected
+    fi
+  done
+}
+
+function rr() {
+  main=${1:=main.rs}
+  rustc ${main} -o out
+  if [ $? -gt 0 ]; then return 1; fi
+  ./out
+}
+
+function rustrun() {
+  rustc $@ -o out
+  if [ $? -gt 0 ]; then return 1; fi
+  ./out
+}

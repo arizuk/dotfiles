@@ -38,6 +38,10 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" 補完候補が表示されている場合は確定。そうでない場合は改行
+inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "<CR>"
+
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
