@@ -1,5 +1,5 @@
 #- atcoder
-function atc_init() {
+atcoder_init_problem() {
   if [ ! -e "./main.rs" ]; then
     cp -i /home/arizuka/ghq/github.com/arizuk/atcoder/templates/main.rs .
   fi
@@ -11,9 +11,14 @@ function atc_init() {
   else
     /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases
   fi
+
+  if [[$? != 0 ]]; then
+    code main.rs
+  fi
 }
 
-function atc_test() {
+atcoder_test() {
+  # Determin main program
   if [ "${1}" != 'rb' ]; then
     rustc ./main.rs
     if [ $? -gt 0 ]; then return 1; fi
@@ -27,6 +32,7 @@ function atc_test() {
     runner="ruby main.rb"
   fi
 
+  # Run testcases
   for i in `ls input*`; do
     output=$(cat ${i}|eval $runner)
     expected=$(cat ${i/input/output})
@@ -47,14 +53,24 @@ function atc_test() {
   done
 }
 
-function rr() {
+alias ai="atcoder_init_problem"
+alias at="atcoder_test"
+
+rr() {
   main=${1:=main.rs}
   rustc ${main} -o out
   if [ $? -gt 0 ]; then return 1; fi
   ./out
 }
 
-function rustrun() {
+rrd() {
+  main=${1:=main.rs}
+  rustc ${main} -o debug
+  if [ $? -gt 0 ]; then return 1; fi
+  rust-lldb ./debug
+}
+
+rustrun() {
   rustc $@ -o out
   if [ $? -gt 0 ]; then return 1; fi
   ./out
