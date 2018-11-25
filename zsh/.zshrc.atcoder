@@ -5,14 +5,15 @@ atcoder_init_problem() {
   fi
 
   if [ $# -gt 0 ]; then
-    /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases $@
+    atcoder download_testcases $@
   elif [ -e "p" ]; then
-    /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases p
+    atcoder download_testcases p
   else
-    /home/arizuka/ghq/github.com/arizuk/atcoder/tools/bin/download_testcases
+    clippaste > p
+    atcoder download_testcases p
   fi
 
-  if [[$? != 0 ]]; then
+  if [[ $? == 0 ]]; then
     code main.rs
   fi
 }
