@@ -309,5 +309,15 @@
         "key": "Escape",
         "command": "extension.jumpy-exit",
         "when": "editorTextFocus && jumpy.isJumpyMode"
+    },
+    {
+        "key": "ctrl+shift+right",
+        "command": "workbench.action.increaseViewSize",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+left",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "editorTextFocus"
     }
 ]

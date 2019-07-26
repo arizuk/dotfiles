@@ -1,7 +1,7 @@
 #- atcoder
 atcoder_init_problem() {
   if [ ! -e "./main.rs" ]; then
-    cp -i /home/arizuka/ghq/github.com/arizuk/atcoder/templates/main.rs .
+    cp -i /home/arizuka/ghq/github.com/arizuk/programming-contest-solutions/templates/main.rs .
   fi
 
   if [ $# -gt 0 ]; then
@@ -20,31 +20,55 @@ atcoder_init_problem() {
 
 atcoder_test() {
   # Determin main program
-  if [ "${1}" != 'rb' ]; then
-    rustc ./main.rs
-    if [ $? -gt 0 ]; then return 1; fi
+  lang=${1:=rust}
 
-    cat main.rs|pbcopy
-    echo "Run main.rs"
-    runner="./main"
-  else
-    cat main.rb|pbcopy
-    echo "Run ruby main.rb"
-    runner="ruby main.rb"
-  fi
+  # compile source
+  case ${lang} in
+    "rust")
+      prog=${2:=main.rs}
+      rustc ${prog} -o main
+      if [ $? -gt 0 ]; then return 1; fi
+
+      cat ${prog}|pbcopy
+      echo "> Run ${prog}"
+      runner="./main"
+      ;;
+    "cpp")
+      g++ -std=c++14 main.cpp
+      if [ $? -gt 0 ]; then return 1; fi
+      cat main.cpp|pbcopy
+      echo "> Run main.cpp"
+      runner="./a.out"
+      ;;
+    "rb")
+      cat main.rb|pbcopy
+      echo "> Run ruby main.rb"
+      runner="ruby main.rb"
+      ;;
+    "bin")
+      prog=${2}
+      echo "> Run ${prog}"
+      runner="${prog}"
+      ;;
+  esac
 
   # Run testcases
+  ok=0
+  failed=0
+
   for i in `ls input*`; do
     output=$(cat ${i}|eval $runner)
     expected=$(cat ${i/input/output})
 
     if [ "$output" != "$expected" ]; then
-      ret="... Failed"
+      ret="... \e[31mFailed\e[m"
+      let failed++
     else
-      ret="... ok"
+      ret="... \e[32mOk\e[m"
+      let ok++
     fi
 
-    echo ---------- ${i} ${ret}
+    echo -e ---------- Case: ${i} ${ret}
     echo $output
 
     if [ "$output" != "$expected" ]; then
@@ -52,6 +76,9 @@ atcoder_test() {
       echo $expected
     fi
   done
+
+  echo
+  echo ok: ${ok}, failed: ${failed}
 }
 
 alias ai="atcoder_init_problem"
@@ -60,6 +87,20 @@ alias at="atcoder_test"
 rr() {
   main=${1:=main.rs}
   rustc ${main} -o out
+  if [ $? -gt 0 ]; then return 1; fi
+  ./out
+}
+
+cppr() {
+  main=${1:=main.cpp}
+  g++ -std=c++14 ${main}
+  if [ $? -gt 0 ]; then return 1; fi
+  ./a.out
+}
+
+rrr() {
+  main=${1:=main.rs}
+  rustc ${main} -o out -C debug-assertions=no
   if [ $? -gt 0 ]; then return 1; fi
   ./out
 }
