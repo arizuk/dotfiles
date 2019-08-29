@@ -1,7 +1,8 @@
+export PIPENV_VENV_IN_PROJECT=1
+
 alias pbcopy='xsel --clipboard --input'
 alias ls="ls -G --color"
 alias ll="ls -l --color"
-alias g='cd $(ghq root)/$(ghq list | peco)'
 alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 alias s="code"
 

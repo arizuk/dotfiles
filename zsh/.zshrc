@@ -96,18 +96,15 @@ alias u='cd ..'
 alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias tmux="tmux -2 -u"
-alias h="history"
+alias sk="sk --layout=reverse --ansi"
+alias g='cd $(ghq root)/$(ghq list|sk)'
+alias groot='cd $(git rev-parse --show-toplevel)'
 
 alias -g L="|less"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
-source ~/.zshrc.local;
 export _Z_DATA=~/.z.data/z;
 source ~/.z.sh/z.sh;
-
-function chpwd() {
-    ls;
-}
 
 setopt extended_glob
 
@@ -116,11 +113,15 @@ setopt auto_param_keys
 
 # スペルチェック
 setopt correct
+setopt hist_ignore_all_dups
 
 # zmv
 autoload -Uz zmv
 alias zmv='noglob zmv'
-alias groot='cd $(git rev-parse --show-toplevel)'
+
+function chpwd() {
+    ls;
+}
 
 # When a file path given, goes to the directory.
 function cdd()
@@ -145,74 +146,7 @@ function _git_status()
 zle -N git_status _git_status
 bindkey '^G^S' git_status
 
-setopt hist_ignore_all_dups
-
-function peco-z-search
-{
-  which peco z > /dev/null
-  if [ $? -ne 0 ]; then
-    echo "Please install peco and z"
-    return 1
-  fi
-  local res=$(z | sort -rn | cut -c 12- | peco)
-  if [ -n "$res" ]; then
-    BUFFER+="cd $res"
-    zle accept-line
-  else
-    return 1
-  fi
-}
-zle -N peco-z-search
-# bindkey '^z' peco-z-search
-
-function peco-git-diff-files()
-{
-    file=$(cat <(git diff --name-only) <(git diff --cached --name-only)|sort|uniq|peco --prompt "[select file]")
-    BUFFER="${BUFFER}${file}"
-    CURSOR=$#BUFFER
-    zle redisplay
-}
-zle -N peco-git-diff-files
-# bindkey '^g' peco-git-diff-files
-
-
-function peco-find-file()
-{
-    if git rev-parse 2> /dev/null; then
-        source_files=$(git ls-files)
-    else
-        source_files=$(find . -type f)
-    fi
-    selected_files=$(echo $source_files | peco --prompt "[find file]")
-
-    result=''
-    for file in $selected_files; do
-        result="${result}$(echo $file | tr '\n' ' ')"
-    done
-
-    BUFFER="${BUFFER}${result}"
-    CURSOR=$#BUFFER
-    zle redisplay
-}
-zle -N peco-find-file
-# bindkey '^q' peco-find-file
-
-function percol_select_history()
-{
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
-    CURSOR=$#BUFFER             # move cursor
-    zle -R -c                   # refresh
-}
-zle -N percol_select_history
-# bindkey '^R' percol_select_history
-
-## utilities powered by sk
+##-- utilities powered by sk
 function sk-select-history()
 {
     BUFFER=$(fc -l -n 1 | sk --tac --query "$LBUFFER")
@@ -233,7 +167,6 @@ function sk-z-move()
 }
 zle -N sk-z-move
 
-# Git related commands
 function sk-git-select-modified-files()
 {
     file=$(cat <(git diff --name-only) <(git diff --cached --name-only)|sort|uniq|sk -m --prompt "[select file]"|tr '\n' ' ')
@@ -293,3 +226,5 @@ if [ $? -eq 0 ]; then
   bindkey '^g^o' sk-open-files
   bindkey '^g^a' sk-git-cd
 fi
+
+source ~/.zshrc.local;
