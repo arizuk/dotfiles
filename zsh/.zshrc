@@ -289,7 +289,7 @@ if [ $? -eq 0 ]; then
   bindkey '^z' sk-z-move
   bindkey '^g^f' sk-git-select-files
   bindkey '^g^m' sk-git-select-modified-files
-  bindkey '^g^s' sk-select-files
+  bindkey '^g^r' sk-select-files
   bindkey '^g^o' sk-open-files
   bindkey '^g^a' sk-git-cd
 fi
