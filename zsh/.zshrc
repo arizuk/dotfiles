@@ -187,7 +187,7 @@ zle -N sk-git-select-files
 
 function sk-select-files()
 {
-    files=$(sk -m --ansi -i -c 'ag -g "{}"' --preview "preview.sh {}" |cut -d: -f1,2|tr '\n', ' ')
+    files=$(ag -g ".*"|sk -m --preview "preview.sh {}")
     BUFFER="${BUFFER}${files}"
     CURSOR=$#BUFFER
     zle redisplay
@@ -207,7 +207,7 @@ zle -N sk-open-files
 
 function sk-git-cd()
 {
-    dir=$(git ls-files $(git rev-parse --show-toplevel)| sed -e '/^[^\/]*$/d' -e 's/\/[^\/]*$//g' | sort | uniq|sk)
+    dir=$(git ls-files $(git rev-parse --show-toplevel)|sed -e '/^[^\/]*$/d' -e 's/\/[^\/]*$//g'|sort|uniq|sk)
     if [ ! -z "${dir}" ]; then
       BUFFER+="cd ${dir}"
       zle accept-line
