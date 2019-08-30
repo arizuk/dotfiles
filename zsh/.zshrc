@@ -97,9 +97,11 @@ alias uu='cd ../..'
 alias uuu='cd ../../..'
 alias tmux="tmux -2 -u"
 alias sk="sk --layout=reverse --ansi"
+alias skp='sk --layout=reverse --ansi --preview="preview.sh {}"'
 alias g='cd $(ghq root)/$(ghq list|sk)'
 alias groot='cd $(git rev-parse --show-toplevel)'
-
+alias -g X="|xargs -o"
+alias -g "$"="|xargs -o"
 alias -g L="|less"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
