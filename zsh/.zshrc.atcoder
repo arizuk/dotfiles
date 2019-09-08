@@ -18,11 +18,9 @@ atcoder_init_problem() {
   fi
 }
 
-atcoder_test() {
-  # Determin main program
-  lang=${1:=rust}
-
-  # compile source
+_atcoder_compile_source() {
+  # Determin solver language and compile source
+  local lang=${1:=rust}
   case ${lang} in
     "rust")
       prog=${2:=main.rs}
@@ -30,36 +28,44 @@ atcoder_test() {
       if [ $? -gt 0 ]; then return 1; fi
 
       cat ${prog}|pbcopy
-      echo "> Run ${prog}"
-      runner="./main"
+      solver_source=${prog}
+      solver="./main"
       ;;
     "cpp")
-      g++ -std=c++14 main.cpp
+      prog=${2:=main.cpp}
+      g++ -std=c++14 ${prog}
       if [ $? -gt 0 ]; then return 1; fi
-      cat main.cpp|pbcopy
-      echo "> Run main.cpp"
-      runner="./a.out"
+
+      cat ${prog}|pbcopy
+      solver_source=${prog}
+      solver="./a.out"
       ;;
     "rb")
-      cat main.rb|pbcopy
-      echo "> Run ruby main.rb"
-      runner="ruby main.rb"
+      prog=${2:=main.rb}
+
+      cat ${prog}|pbcopy
+      solver_source=${prog}
+      solver="ruby ${prog}"
       ;;
-    "bin")
-      prog=${2}
-      echo "> Run ${prog}"
-      runner="${prog}"
+    * )
+      prog=${@:1}
+      solver_source="${prog}"
+      solver="${prog}"
       ;;
   esac
+}
 
-  # Run testcases
+_atcoder_run_testcases() {
+  solver=$1
+
   ok=0
   failed=0
 
   for i in `ls input*`; do
-    output=$(cat ${i}|eval $runner)
-    expected=$(cat ${i/input/output})
+    output=$(cat ${i}|eval ${solver})
+    if [ $? -gt 0 ]; then; return 1; fi
 
+    expected=$(cat ${i/input/output})
     if [ "$output" != "$expected" ]; then
       ret="... \e[31mFailed\e[m"
       let failed++
@@ -77,8 +83,25 @@ atcoder_test() {
     fi
   done
 
-  echo
   echo ok: ${ok}, failed: ${failed}
+}
+
+atcoder_test() {
+
+  local solver
+  local solver_source
+  _atcoder_compile_source $@
+
+  if [ $? -gt 0 ]; then;
+    echo "AT> Abort due to compile error" 2>&1
+    return 1
+  fi
+
+  echo "AT> Source: ${solver_source}"
+  echo "AT> Run: ${solver}"
+  echo
+
+  _atcoder_run_testcases "${solver}"
 }
 
 alias ai="atcoder_init_problem"
