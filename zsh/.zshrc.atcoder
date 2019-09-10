@@ -1,7 +1,7 @@
 #- atcoder
 atcoder_init_problem() {
   if [ ! -e "./main.rs" ]; then
-    cp -i /home/arizuka/ghq/github.com/arizuk/programming-contest-solutions/templates/main.rs .
+    cp -i $(ghq root)/github.com/arizuk/programming-contest-solutions/templates/main.rs .
   fi
 
   if [ $# -gt 0 ]; then
