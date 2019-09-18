@@ -1,4 +1,3 @@
-# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
 if [[ -d "$HOME/.zsh-completions/src" ]]; then
@@ -17,24 +16,10 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-#- theme
-function git_branch_info() {
-  if [[ "$(git config --get oh-my-zsh.hide-status)" != "1" ]]; then
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-  fi
-}
+# prompt
+eval "$(starship init zsh)"
 
-PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%I:%M:%S]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_branch_info)\
-%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} '
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-#-- alias
+# alias
 alias ls='ls -G'
 alias ll='ls -l'
 alias u='cd ..'
