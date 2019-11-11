@@ -1,0 +1,18 @@
+source $(ghq root)/github.com/takezoh/lazyenv/lazyenv.bash
+_pyenv_init() {
+  export PATH="$HOME/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+}
+eval "$(lazyenv.load _pyenv_init pyenv python pip aws)"
+
+_rbenv_init() {
+  export PATH="$HOME/.rbenv/bin:$PATH:"
+  eval "$(rbenv init -)"
+}
+eval "$(lazyenv.load _rbenv_init rbenv ruby bundle)"
+
+_nodenv_init() {
+  eval "$(nodenv init -)"
+}
+eval "$(lazyenv.load _nodenv_init nodenv node npm)"
