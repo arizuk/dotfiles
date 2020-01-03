@@ -214,13 +214,12 @@
         "command": "workbench.view.explorer"
     },
     {
-        "key": "alt+s",
+        "key": "ctrl+k ctrl+f",
         "command": "actions.find"
     },
     {
-        "key": "alt+shift+s",
-        "command": "workbench.action.findInFiles",
-        "when": "!editorFocus && !searchInputBoxFocus"
+        "key": "ctrl+k ctrl+shift+f",
+        "command": "workbench.action.findInFiles"
     },
     // {
     //     "key": "alt+shift+s",
@@ -282,7 +281,7 @@
         "when": "inFilesPicker && inQuickOpen"
     },
     {
-        "key": "ctrl+[Semicolon]",
+        "key": "ctrl+;",
         "command": "editor.action.triggerSuggest",
         "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
     },
